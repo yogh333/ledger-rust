@@ -81,8 +81,10 @@ impl<const LEN: usize> BIP32Path<LEN> {
         }
 
         //each chunk of 4 bytes thereafter is a path component
-        let components = input[1..]
-            .chunks(4) //each component is 4 bytes
+
+        let iter = input[1..].chunks(4);
+
+        let components = iter
             .take(len) //take at most `len` chunks
             .map(|c| {
                 //conver to array of 4 bytes
