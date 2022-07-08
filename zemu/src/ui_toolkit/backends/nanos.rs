@@ -54,7 +54,7 @@ impl Default for NanoSBackend {
             value: [0; MESSAGE_LINE_SIZE],
             value2: [0; MESSAGE_LINE_SIZE],
             viewable_size: 0,
-            expert: false,
+            expert: true,
         }
     }
 }
@@ -103,7 +103,7 @@ impl UIBackend<KEY_SIZE> for NanoSBackend {
     }
 
     fn show_idle(&mut self, item_idx: usize, status: Option<&[u8]>) {
-        let status = status.unwrap_or(&pic_str!(b"DO NOT USE")[..]);
+        let status = status.unwrap_or(&pic_str!(b"WIP...")[..]);
 
         let len = core::cmp::min(self.key.len(), status.len());
         self.key[..len].copy_from_slice(&status[..len]);

@@ -50,7 +50,7 @@ impl Default for NanoXBackend {
             key: [0; KEY_SIZE],
             message: [0; MESSAGE_SIZE],
             viewable_size: 0,
-            expert: false,
+            expert: true,
             flow_inside_loop: false,
         }
     }
@@ -144,7 +144,7 @@ impl UIBackend<KEY_SIZE> for NanoXBackend {
     fn split_value_field(&mut self, _: &'static mut str) {}
 
     fn show_idle(&mut self, _item_idx: usize, status: Option<&[u8]>) {
-        let status = status.unwrap_or(&pic_str!(b"DO NOT USE")[..]);
+        let status = status.unwrap_or(&pic_str!(b"WIP...")[..]);
 
         self.key[..status.len()].copy_from_slice(status);
 
