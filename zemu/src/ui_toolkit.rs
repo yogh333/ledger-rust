@@ -16,6 +16,7 @@
 use crate::{
     ui::{manual_vtable::RefMutDynViewable, Viewable},
     ShowTooBig, ViewError,
+    zemu_log_stack,
 };
 use arrayvec::ArrayString;
 
@@ -360,6 +361,7 @@ impl<B: UIBackend<KS>, const KS: usize> Zui<B, KS> {
 
     //view_error_show
     fn show_error(&mut self) {
+        zemu_log_stack("Show Error !!! \x00");
         let error_key = pic_str!(b"ERROR");
         let error_message = pic_str!(b"SHOWING DATA");
 

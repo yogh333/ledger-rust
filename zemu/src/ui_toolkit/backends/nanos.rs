@@ -54,7 +54,7 @@ impl Default for NanoSBackend {
             value: [0; MESSAGE_LINE_SIZE],
             value2: [0; MESSAGE_LINE_SIZE],
             viewable_size: 0,
-            expert: true,
+            expert: false,
         }
     }
 }

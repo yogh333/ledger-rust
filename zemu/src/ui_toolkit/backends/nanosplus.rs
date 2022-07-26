@@ -50,7 +50,7 @@ impl Default for NanoSPBackend {
             key: [0; KEY_SIZE],
             message: [0; MESSAGE_SIZE],
             viewable_size: 0,
-            expert: true,
+            expert: false,
             flow_inside_loop: false,
         }
     }
