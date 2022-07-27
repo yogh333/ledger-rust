@@ -17,6 +17,8 @@ use bolos_sys::raw::{
     io_exchange, G_io_apdu_buffer as APDU_BUFFER, CHANNEL_APDU, IO_ASYNCH_REPLY, IO_RETURN_AFTER_TX,
 };
 
+use bolos_sys::pic::PIC;
+
 mod comm;
 pub use comm::*;
 
@@ -76,13 +78,14 @@ fn move_to_global_storage<T: Sized>(item: T) -> Option<&'static mut T> {
 }
 
 impl<T: Viewable + Sized + 'static> Show for T {
-    unsafe fn show(self, flags: &mut u32) -> Result<(), ShowTooBig> {
+    unsafe fn show(self, flags: &mut u32) -> Result<(usize, u16), ShowTooBig> {
         use crate::ui_toolkit::RUST_ZUI;
 
         RUST_ZUI.show(self)?;
 
         *flags |= IO_ASYNCH_REPLY;
-        Ok(())
+
+        Ok((0, 0x9000))
     }
 }
 
